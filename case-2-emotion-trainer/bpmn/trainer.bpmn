@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="bpmn-js (https://demo.bpmn.io)" exporterVersion="18.31.1">
+  <bpmn:collaboration id="Collaboration_1">
+    <bpmn:participant id="Pool_main" name="Курс «Стандарты сервиса» (SCORM)" processRef="Process_trainer" />
+    <bpmn:textAnnotation id="TextAnnotation_03r5n3b">
+      <bpmn:text>В поле балла передается null (или 0)</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_15p2p1y" associationDirection="None" sourceRef="Event_0t5vcwv" targetRef="TextAnnotation_03r5n3b" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_trainer" name="Прохождение тренажера эмоций" isExecutable="false">
+    <bpmn:laneSet id="LaneSet_1">
+      <bpmn:lane id="Lane_lms" name="LMS">
+        <bpmn:flowNodeRef>lmsPass</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>lmsProgress</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>endFail</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>lmsFail</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_0t5vcwv</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_course" name="Тренажер в браузере">
+        <bpmn:flowNodeRef>hasCam</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>confirm</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>endOk</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>inProgress</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>score</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>feedback</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>passed</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_012ezv4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>endNoCam</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_emp" name="Сотрудник">
+        <bpmn:flowNodeRef>again</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>start</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>smile</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_06a9exo</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:exclusiveGateway id="hasCam" name="Камера есть и согласен на анализ?">
+      <bpmn:incoming>t1</bpmn:incoming>
+      <bpmn:outgoing>t2</bpmn:outgoing>
+      <bpmn:outgoing>t4</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="again" name="Еще попытка?">
+      <bpmn:incoming>t9</bpmn:incoming>
+      <bpmn:outgoing>t10</bpmn:outgoing>
+      <bpmn:outgoing>t11</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="lmsPass" name="Записать «пройден» и балл">
+      <bpmn:incoming>t13</bpmn:incoming>
+      <bpmn:outgoing>t14</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="confirm" name="Показать подтверждение">
+      <bpmn:incoming>t14</bpmn:incoming>
+      <bpmn:outgoing>t15</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="endOk" name="Пройден">
+      <bpmn:incoming>t15</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:startEvent id="start" name="Открыл тренажер">
+      <bpmn:outgoing>t1</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:userTask id="smile" name="Выразить эмоцию и зафиксировать кадр">
+      <bpmn:incoming>Flow_1wy2z8d</bpmn:incoming>
+      <bpmn:outgoing>t6</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="Gateway_06a9exo">
+      <bpmn:incoming>t10</bpmn:incoming>
+      <bpmn:incoming>t5b</bpmn:incoming>
+      <bpmn:outgoing>Flow_1wy2z8d</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="lmsProgress" name="Записать «в процессе»">
+      <bpmn:incoming>t5</bpmn:incoming>
+      <bpmn:outgoing>t5b</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="t1" sourceRef="start" targetRef="hasCam" />
+    <bpmn:sequenceFlow id="t2" name="нет" sourceRef="hasCam" targetRef="endNoCam" />
+    <bpmn:sequenceFlow id="t4" name="да" sourceRef="hasCam" targetRef="inProgress" />
+    <bpmn:sequenceFlow id="t6" sourceRef="smile" targetRef="score" />
+    <bpmn:sequenceFlow id="t8" sourceRef="feedback" targetRef="passed" />
+    <bpmn:sequenceFlow id="t9" name="нет" sourceRef="passed" targetRef="again" />
+    <bpmn:sequenceFlow id="t13" name="да" sourceRef="passed" targetRef="lmsPass" />
+    <bpmn:sequenceFlow id="t10" name="да" sourceRef="again" targetRef="Gateway_06a9exo" />
+    <bpmn:sequenceFlow id="t11" name="нет" sourceRef="again" targetRef="lmsFail" />
+    <bpmn:sequenceFlow id="t14" sourceRef="lmsPass" targetRef="confirm" />
+    <bpmn:sequenceFlow id="t15" sourceRef="confirm" targetRef="endOk" />
+    <bpmn:sequenceFlow id="Flow_1wy2z8d" sourceRef="Gateway_06a9exo" targetRef="smile" />
+    <bpmn:sequenceFlow id="t5" sourceRef="inProgress" targetRef="lmsProgress" />
+    <bpmn:sequenceFlow id="t5b" sourceRef="lmsProgress" targetRef="Gateway_06a9exo" />
+    <bpmn:intermediateThrowEvent id="endNoCam" name="Не пройден">
+      <bpmn:incoming>t2</bpmn:incoming>
+      <bpmn:linkEventDefinition id="LinkEventDefinition_0zrw0k2" name="" />
+    </bpmn:intermediateThrowEvent>
+    <bpmn:sequenceFlow id="t12" sourceRef="lmsFail" targetRef="endFail" />
+    <bpmn:endEvent id="endFail" name="Не пройден">
+      <bpmn:incoming>t12</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1ko59z3" sourceRef="Event_0t5vcwv" targetRef="lmsFail" />
+    <bpmn:serviceTask id="inProgress" name="Передать статус «в процессе»">
+      <bpmn:incoming>t4</bpmn:incoming>
+      <bpmn:outgoing>t5</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="lmsFail" name="Записать «не пройден» и лучший балл">
+      <bpmn:incoming>t11</bpmn:incoming>
+      <bpmn:incoming>Flow_1ko59z3</bpmn:incoming>
+      <bpmn:outgoing>t12</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="score" name="Оценить кадр на устройстве, кадр удалить из памяти">
+      <bpmn:incoming>t6</bpmn:incoming>
+      <bpmn:outgoing>t7</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="feedback" name="Показать балл, что удалось, совет">
+      <bpmn:incoming>t7</bpmn:incoming>
+      <bpmn:outgoing>t8</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="t7" sourceRef="score" targetRef="feedback" />
+    <bpmn:subProcess id="Activity_012ezv4" triggeredByEvent="true">
+      <bpmn:startEvent id="Event_0tsdpnz" name="закрыл тренажер/ сессия прервана">
+        <bpmn:outgoing>Flow_1x2v9ke</bpmn:outgoing>
+        <bpmn:messageEventDefinition id="MessageEventDefinition_0m260jl" />
+      </bpmn:startEvent>
+      <bpmn:intermediateThrowEvent id="Event_091x1de" name="Не пройден">
+        <bpmn:incoming>Flow_1x2v9ke</bpmn:incoming>
+        <bpmn:linkEventDefinition id="LinkEventDefinition_1431ys6" name="" />
+      </bpmn:intermediateThrowEvent>
+      <bpmn:sequenceFlow id="Flow_1x2v9ke" sourceRef="Event_0tsdpnz" targetRef="Event_091x1de" />
+    </bpmn:subProcess>
+    <bpmn:exclusiveGateway id="passed" name="Балл ≥ 70?">
+      <bpmn:incoming>t8</bpmn:incoming>
+      <bpmn:outgoing>t9</bpmn:outgoing>
+      <bpmn:outgoing>t13</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:intermediateCatchEvent id="Event_0t5vcwv" name="Не пройден">
+      <bpmn:outgoing>Flow_1ko59z3</bpmn:outgoing>
+      <bpmn:linkEventDefinition id="LinkEventDefinition_0uvwogv" name="" />
+    </bpmn:intermediateCatchEvent>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="Diagram_1">
+    <bpmndi:BPMNPlane id="Plane_1" bpmnElement="Collaboration_1">
+      <bpmndi:BPMNShape id="Pool_main_di" bpmnElement="Pool_main" isHorizontal="true">
+        <dc:Bounds x="160" y="40" width="1530" height="520" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_emp_di" bpmnElement="Lane_emp" isHorizontal="true">
+        <dc:Bounds x="190" y="40" width="1500" height="150" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_course_di" bpmnElement="Lane_course" isHorizontal="true">
+        <dc:Bounds x="190" y="190" width="1500" height="240" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_lms_di" bpmnElement="Lane_lms" isHorizontal="true">
+        <dc:Bounds x="190" y="430" width="1500" height="130" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="hasCam_di" bpmnElement="hasCam" isMarkerVisible="true">
+        <dc:Bounds x="345" y="245" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="230" y="256" width="114" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="again_di" bpmnElement="again" isMarkerVisible="true">
+        <dc:Bounds x="1055" y="95" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="966" y="113" width="74" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="lmsPass_di" bpmnElement="lmsPass">
+        <dc:Bounds x="1020" y="450" width="120" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="confirm_di" bpmnElement="confirm">
+        <dc:Bounds x="1430" y="230" width="120" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="endOk_di" bpmnElement="endOk">
+        <dc:Bounds x="1602" y="252" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1570" y="292" width="100" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="start_di" bpmnElement="start">
+        <dc:Bounds x="262" y="102" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="235" y="142" width="91" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="smile_di" bpmnElement="smile">
+        <dc:Bounds x="620" y="80" width="120" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_06a9exo_di" bpmnElement="Gateway_06a9exo" isMarkerVisible="true">
+        <dc:Bounds x="545" y="95" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="lmsProgress_di" bpmnElement="lmsProgress">
+        <dc:Bounds x="560" y="450" width="120" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0vcyivd_di" bpmnElement="endNoCam">
+        <dc:Bounds x="352" y="352" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="340" y="392" width="61" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="endFail_di" bpmnElement="endFail">
+        <dc:Bounds x="1602" y="472" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1570" y="512" width="100" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1pgeo8y_di" bpmnElement="inProgress">
+        <dc:Bounds x="440" y="230" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="lmsFail_di" bpmnElement="lmsFail">
+        <dc:Bounds x="1350" y="450" width="120" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="score_di" bpmnElement="score">
+        <dc:Bounds x="730" y="210" width="120" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="feedback_di" bpmnElement="feedback">
+        <dc:Bounds x="880" y="210" width="120" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="passed_di" bpmnElement="passed" isMarkerVisible="true">
+        <dc:Bounds x="1055" y="225" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1115" y="243" width="114" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_136nukf_di" bpmnElement="Event_0t5vcwv">
+        <dc:Bounds x="1202" y="492" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1190" y="535" width="61" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_012ezv4_di" bpmnElement="Activity_012ezv4" isExpanded="true">
+        <dc:Bounds x="730" y="300" width="270" height="120" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_02bsbz5_di" bpmnElement="Event_0tsdpnz">
+        <dc:Bounds x="772" y="332" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="747" y="375" width="93" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1h3nj3r_di" bpmnElement="Event_091x1de">
+        <dc:Bounds x="922" y="332" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="910" y="375" width="61" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1x2v9ke_di" bpmnElement="Flow_1x2v9ke">
+        <di:waypoint x="808" y="350" />
+        <di:waypoint x="922" y="350" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="t1_di" bpmnElement="t1">
+        <di:waypoint x="298" y="120" />
+        <di:waypoint x="370" y="120" />
+        <di:waypoint x="370" y="245" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="t2_di" bpmnElement="t2">
+        <di:waypoint x="370" y="295" />
+        <di:waypoint x="370" y="352" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="378" y="313" width="40" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="t4_di" bpmnElement="t4">
+        <di:waypoint x="395" y="270" />
+        <di:waypoint x="440" y="270" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="395" y="252" width="40" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="t6_di" bpmnElement="t6">
+        <di:waypoint x="740" y="120" />
+        <di:waypoint x="790" y="120" />
+        <di:waypoint x="790" y="210" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="t8_di" bpmnElement="t8">
+        <di:waypoint x="1000" y="250" />
+        <di:waypoint x="1055" y="250" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="t9_di" bpmnElement="t9">
+        <di:waypoint x="1080" y="225" />
+        <di:waypoint x="1080" y="145" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1088" y="198" width="40" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="t13_di" bpmnElement="t13">
+        <di:waypoint x="1080" y="275" />
+        <di:waypoint x="1080" y="450" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1088" y="296" width="40" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="t10_di" bpmnElement="t10">
+        <di:waypoint x="1080" y="95" />
+        <di:waypoint x="1080" y="60" />
+        <di:waypoint x="570" y="60" />
+        <di:waypoint x="570" y="95" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1088" y="66" width="40" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="t11_di" bpmnElement="t11">
+        <di:waypoint x="1105" y="120" />
+        <di:waypoint x="1410" y="120" />
+        <di:waypoint x="1410" y="450" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1174" y="127" width="17" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="t14_di" bpmnElement="t14">
+        <di:waypoint x="1140" y="490" />
+        <di:waypoint x="1170" y="490" />
+        <di:waypoint x="1170" y="400" />
+        <di:waypoint x="1490" y="400" />
+        <di:waypoint x="1490" y="310" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="t15_di" bpmnElement="t15">
+        <di:waypoint x="1550" y="270" />
+        <di:waypoint x="1602" y="270" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1wy2z8d_di" bpmnElement="Flow_1wy2z8d">
+        <di:waypoint x="595" y="120" />
+        <di:waypoint x="620" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="t5_di" bpmnElement="t5">
+        <di:waypoint x="520" y="310" />
+        <di:waypoint x="520" y="490" />
+        <di:waypoint x="560" y="490" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="t5b_di" bpmnElement="t5b">
+        <di:waypoint x="620" y="450" />
+        <di:waypoint x="620" y="180" />
+        <di:waypoint x="570" y="180" />
+        <di:waypoint x="570" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="t12_di" bpmnElement="t12">
+        <di:waypoint x="1470" y="490" />
+        <di:waypoint x="1602" y="490" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ko59z3_di" bpmnElement="Flow_1ko59z3">
+        <di:waypoint x="1238" y="510" />
+        <di:waypoint x="1294" y="510" />
+        <di:waypoint x="1294" y="490" />
+        <di:waypoint x="1350" y="490" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="t7_di" bpmnElement="t7">
+        <di:waypoint x="850" y="250" />
+        <di:waypoint x="880" y="250" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_15p2p1y_di" bpmnElement="Association_15p2p1y">
+        <di:waypoint x="1227" y="493" />
+        <di:waypoint x="1231" y="483" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="TextAnnotation_03r5n3b_di" bpmnElement="TextAnnotation_03r5n3b">
+        <dc:Bounds x="1190" y="440" width="150" height="43" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

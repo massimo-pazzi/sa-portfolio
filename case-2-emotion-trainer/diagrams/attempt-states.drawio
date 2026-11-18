@@ -1,0 +1,120 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Страница-1" id="dA_IByi1Q7BSF3J995v9">
+    <mxGraphModel dx="1112" dy="826" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="200" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="ItgbvEHf0REChskTrKIe-18" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=none;" value="" vertex="1">
+          <mxGeometry height="400" width="1100" as="geometry" />
+        </mxCell>
+        <mxCell id="ItgbvEHf0REChskTrKIe-1" parent="1" style="ellipse;html=1;shape=endState;fillColor=#999999;strokeColor=#999999;" value="" vertex="1">
+          <mxGeometry height="30" width="30" x="1020" y="171" as="geometry" />
+        </mxCell>
+        <mxCell id="ItgbvEHf0REChskTrKIe-2" parent="1" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.start_2;whiteSpace=wrap;perimeter=ellipsePerimeter;fillColor=#999999;strokeColor=none;" value="" vertex="1">
+          <mxGeometry height="30" width="30" x="30" y="171" as="geometry" />
+        </mxCell>
+        <mxCell id="ItgbvEHf0REChskTrKIe-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;roundedPerimeter=1;fontSize=16;" value="Не начат" vertex="1">
+          <mxGeometry height="60" width="120" x="120" y="156" as="geometry" />
+        </mxCell>
+        <mxCell id="ItgbvEHf0REChskTrKIe-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;roundedPerimeter=1;fontSize=16;" value="В процессе" vertex="1">
+          <mxGeometry height="60" width="120" x="390" y="156" as="geometry" />
+        </mxCell>
+        <mxCell id="ItgbvEHf0REChskTrKIe-5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;roundedPerimeter=1;fontSize=16;" value="Пройден" vertex="1">
+          <mxGeometry height="60" width="120" x="740" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ItgbvEHf0REChskTrKIe-6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;roundedPerimeter=1;fontSize=16;" value="Не пройден" vertex="1">
+          <mxGeometry height="60" width="120" x="740" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="ItgbvEHf0REChskTrKIe-7" edge="1" parent="1" source="ItgbvEHf0REChskTrKIe-3" style="endArrow=classic;html=1;rounded=0;defaultLabelBackgroundColor=page;labelPadding=0 4;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="ItgbvEHf0REChskTrKIe-4" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="510" y="260" as="sourcePoint" />
+            <mxPoint x="560" y="210" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ItgbvEHf0REChskTrKIe-9" connectable="0" parent="ItgbvEHf0REChskTrKIe-7" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=fontFamily,fontColor,fontStyle,textOpacity,labelBorderColor,labelBorderWidth,labelBackgroundColor,defaultLabelBackgroundColor,labelPadding;defaultLabelBackgroundColor=page;labelPadding=0 4;fontSize=12;" value="Открыл тренажер;&lt;div&gt;Разрешил камеру;&lt;/div&gt;&lt;div&gt;Дал согласие;&lt;/div&gt;" vertex="1">
+          <mxGeometry relative="1" x="-0.4423" as="geometry">
+            <mxPoint x="28" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ItgbvEHf0REChskTrKIe-8" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;defaultLabelBackgroundColor=page;labelPadding=0 4;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="ItgbvEHf0REChskTrKIe-3" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="60" y="186" as="sourcePoint" />
+            <mxPoint x="560" y="210" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ItgbvEHf0REChskTrKIe-10" edge="1" parent="1" source="ItgbvEHf0REChskTrKIe-4" style="endArrow=classic;html=1;rounded=1;defaultLabelBackgroundColor=page;labelPadding=0 4;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;curved=0;" target="ItgbvEHf0REChskTrKIe-5" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="520" y="171" />
+              <mxPoint x="520" y="110" />
+            </Array>
+            <mxPoint x="660" y="140" as="sourcePoint" />
+            <mxPoint x="710" y="90" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ItgbvEHf0REChskTrKIe-12" connectable="0" parent="ItgbvEHf0REChskTrKIe-10" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=fontFamily,fontColor,fontStyle,textOpacity,labelBorderColor,labelBorderWidth,labelBackgroundColor,defaultLabelBackgroundColor,labelPadding;defaultLabelBackgroundColor=page;labelPadding=0 4;fontSize=12;" value="Завершил: балл ≥ 70" vertex="1">
+          <mxGeometry relative="1" x="-0.1561" y="1" as="geometry">
+            <mxPoint x="28" y="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ItgbvEHf0REChskTrKIe-11" edge="1" parent="1" source="ItgbvEHf0REChskTrKIe-4" style="endArrow=classic;html=1;rounded=1;defaultLabelBackgroundColor=page;labelPadding=0 4;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;curved=0;" target="ItgbvEHf0REChskTrKIe-6" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="520" y="201" />
+              <mxPoint x="520" y="270" />
+            </Array>
+            <mxPoint x="660" y="140" as="sourcePoint" />
+            <mxPoint x="710" y="90" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ItgbvEHf0REChskTrKIe-13" connectable="0" parent="ItgbvEHf0REChskTrKIe-11" style="edgeLabel;html=1;align=left;verticalAlign=middle;resizable=0;points=[];inheritText=fontFamily,fontColor,fontStyle,textOpacity,labelBorderColor,labelBorderWidth,labelBackgroundColor,defaultLabelBackgroundColor,labelPadding;defaultLabelBackgroundColor=page;labelPadding=0 4;fontSize=12;" value="Завершил: балл &amp;lt; 70;&lt;div&gt;Досрочное завершение&lt;/div&gt;" vertex="1">
+          <mxGeometry relative="1" x="-0.0619" as="geometry">
+            <mxPoint x="-31" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ItgbvEHf0REChskTrKIe-16" edge="1" parent="1" style="endArrow=classic;html=1;rounded=1;defaultLabelBackgroundColor=page;labelPadding=0 4;entryX=0.5;entryY=0;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;curved=0;" target="ItgbvEHf0REChskTrKIe-1" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="860" y="110" as="sourcePoint" />
+            <mxPoint x="580" y="30" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ItgbvEHf0REChskTrKIe-17" edge="1" parent="1" source="ItgbvEHf0REChskTrKIe-6" style="endArrow=classic;html=1;rounded=1;defaultLabelBackgroundColor=page;labelPadding=0 4;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;curved=0;" target="ItgbvEHf0REChskTrKIe-1" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="530" y="80" as="sourcePoint" />
+            <mxPoint x="580" y="30" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ItgbvEHf0REChskTrKIe-19" edge="1" parent="1" source="ItgbvEHf0REChskTrKIe-3" style="endArrow=classic;html=1;rounded=1;defaultLabelBackgroundColor=page;labelPadding=0 4;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;curved=0;" target="ItgbvEHf0REChskTrKIe-6" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="180" y="340" />
+              <mxPoint x="830" y="340" />
+            </Array>
+            <mxPoint x="510" y="130" as="sourcePoint" />
+            <mxPoint x="560" y="80" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ItgbvEHf0REChskTrKIe-20" connectable="0" parent="ItgbvEHf0REChskTrKIe-19" style="edgeLabel;html=1;align=left;verticalAlign=middle;resizable=0;points=[];inheritText=fontFamily,fontColor,fontStyle,textOpacity,labelBorderColor,labelBorderWidth,labelBackgroundColor,defaultLabelBackgroundColor,labelPadding;defaultLabelBackgroundColor=page;labelPadding=0 4;fontSize=12;" value="Нет камеры;&lt;div&gt;Отказ от согласия&lt;/div&gt;" vertex="1">
+          <mxGeometry relative="1" x="-0.4963" y="1" as="geometry">
+            <mxPoint x="9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ItgbvEHf0REChskTrKIe-22" edge="1" parent="1" source="ItgbvEHf0REChskTrKIe-4" style="endArrow=classic;html=1;rounded=0;defaultLabelBackgroundColor=page;labelPadding=0 4;exitX=0.909;exitY=1.013;exitDx=0;exitDy=0;entryX=0.147;entryY=1.04;entryDx=0;entryDy=0;" target="ItgbvEHf0REChskTrKIe-4" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="497.84" y="242.16" />
+              <mxPoint x="410" y="242.16" />
+            </Array>
+            <mxPoint x="490" y="250" as="sourcePoint" />
+            <mxPoint x="540" y="200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ItgbvEHf0REChskTrKIe-23" connectable="0" parent="ItgbvEHf0REChskTrKIe-22" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;labelPadding=0 4;" value="Новая&lt;div&gt;попытка&lt;/div&gt;" vertex="1">
+          <mxGeometry relative="1" x="-0.1918" as="geometry">
+            <mxPoint x="-17" y="-2" as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

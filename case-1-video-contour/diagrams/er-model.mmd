@@ -1,0 +1,47 @@
+erDiagram
+    CLUB ||--o{ MEMBERSHIP : includes
+    USER ||--o{ MEMBERSHIP : joins
+    CLUB ||--o{ RECIPE : owns
+    CLUB ||--o{ SUBSCRIPTION : scopes
+    USER o|--o{ SUBSCRIPTION : holds
+    RECIPE ||--o{ TRANSCODE_JOB : processes
+
+    CLUB {
+        uuid id PK
+        string status
+    }
+    USER {
+        uuid id PK
+        string role
+    }
+    MEMBERSHIP {
+        uuid club_id FK
+        uuid user_id FK
+        string role
+    }
+    SUBSCRIPTION {
+        uuid id PK
+        uuid club_id FK
+        uuid user_id FK "nullable"
+        string status
+        datetime current_period_start "nullable"
+        datetime current_period_end "nullable"
+    }
+    RECIPE {
+        uuid id PK
+        uuid club_id FK
+        string status
+        string access_level
+        string video_manifest_url "nullable"
+        jsonb components "nested preparation steps"
+    }
+    TRANSCODE_JOB {
+        uuid id PK
+        uuid recipe_id FK
+        string status
+        string source_path
+        int attempts
+        string error "nullable"
+        datetime created_at
+        datetime updated_at
+    }

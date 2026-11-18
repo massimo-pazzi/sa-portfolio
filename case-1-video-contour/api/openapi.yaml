@@ -1,0 +1,138 @@
+openapi: 3.0.3
+info:
+  title: Видеоконтур — маршрут плейлистов HLS
+  version: 1.0.0
+  description: |
+    Маршрут отдаёт плейлисты HLS платного видео только зрителю с правом на рецепт.
+    Сегменты видео маршрут не отдаёт: в плейлисте качества каждый сегмент заменён
+    подписанной ссылкой на объект в хранилище показа (15 минут для зрителя, 6 часов для админа).
+
+    Каждый запрос проходит полный конвейер: сессия → лимит запросов → клуб (определяет сервер
+    по домену) → рецепт опубликован → право → чтение плейлиста. Повторный запрос того же URL
+    допустим в любой момент: так плеер получает новые подписи, когда старые истекли.
+
+    Невалидный путь отвечает 404, а не 400: структура путей не раскрывается.
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+servers:
+  - url: https://club.example.ru
+    description: домен клуба (у каждого клуба свой)
+security:
+  - session: []
+tags:
+  - name: media
+    description: доставка видео
+paths:
+  /api/media/hls/{recipeId}/{file}:
+    get:
+      tags: [media]
+      operationId: getHlsPlaylist
+      summary: Плейлист HLS рецепта (мастер или качество)
+      parameters:
+        - name: recipeId
+          in: path
+          required: true
+          description: идентификатор рецепта (UUID)
+          schema:
+            type: string
+            format: uuid
+          example: 3f1c2a9e-7b4d-4e8a-9c21-5d6e7f8a9b0c
+        - name: file
+          in: path
+          required: true
+          description: только плейлисты; сегменты `.ts` маршрут не отдаёт
+          schema:
+            type: string
+            pattern: '^(?:master|\d{3,4}p)\.m3u8$'
+          examples:
+            master:
+              value: master.m3u8
+            rendition:
+              value: 720p.m3u8
+      responses:
+        '200':
+          description: |
+            Зритель имеет право. Мастер-плейлист отдаётся как есть (в нём относительные имена
+            плейлистов качеств); в плейлисте качества сегменты заменены подписанными ссылками.
+          headers:
+            Cache-Control:
+              description: подписи нельзя кэшировать ни в браузере, ни в прокси
+              schema:
+                type: string
+                example: private, no-store
+          content:
+            application/vnd.apple.mpegurl:
+              schema:
+                type: string
+              examples:
+                master:
+                  summary: мастер-плейлист
+                  value: |
+                    #EXTM3U
+                    #EXT-X-STREAM-INF:BANDWIDTH=300000,RESOLUTION=480x854
+                    480p.m3u8
+                    #EXT-X-STREAM-INF:BANDWIDTH=1000000,RESOLUTION=720x1280
+                    720p.m3u8
+                    #EXT-X-STREAM-INF:BANDWIDTH=2500000,RESOLUTION=1080x1920
+                    1080p.m3u8
+                rendition:
+                  summary: плейлист качества с подписанными сегментами (подпись сокращена)
+                  value: |
+                    #EXTM3U
+                    #EXT-X-TARGETDURATION:6
+                    #EXTINF:6.0,
+                    https://storage.example.ru/clubs/{clubId}/media/hls/{recipeId}/720p_000.ts?X-Amz-Expires=900&X-Amz-Signature=…
+                    #EXTINF:6.0,
+                    https://storage.example.ru/clubs/{clubId}/media/hls/{recipeId}/720p_001.ts?X-Amz-Expires=900&X-Amz-Signature=…
+        '401':
+          description: нет сессии. JSON, а не перенаправление на вход — иначе плеер получит HTML и сломается
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+              example: { error: Не авторизован, code: UNAUTHORIZED }
+        '403':
+          description: сессия есть, права нет (PRO-рецепт без подписки) или подписка закончилась во время просмотра
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+              example: { error: Нет доступа, code: FORBIDDEN }
+        '404':
+          description: |
+            невалидный путь; рецепта нет в этом клубе; рецепт не опубликован (для не-админа);
+            видео ещё не нарезано; объекта плейлиста нет в хранилище (пишется WARN в лог с ключом объекта)
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+              example: { error: Не найдено, code: NOT_FOUND }
+        '429':
+          description: превышен лимит — 100 запросов в минуту на пользователя
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+              example: { error: Слишком много запросов, code: RATE_LIMITED }
+        '502':
+          description: хранилище ответило ошибкой; ключи и доступы в тексте не раскрываются
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+              example: { error: Ошибка хранилища, code: UPSTREAM_ERROR }
+components:
+  securitySchemes:
+    session:
+      type: apiKey
+      in: cookie
+      name: session
+      # Обезличенное имя cookie.
+      description: сессия после входа по e-mail или Яндекс ID (на сайте и в мини-приложении мессенджера)
+  schemas:
+    Error:
+      type: object
+      required: [error, code]
+      properties:
+        error:
+          type: string
+          description: текст для человека
+        code:
+          type: string
+          enum: [UNAUTHORIZED, FORBIDDEN, NOT_FOUND, RATE_LIMITED, UPSTREAM_ERROR]
