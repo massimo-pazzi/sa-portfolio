@@ -1,0 +1,51 @@
+erDiagram
+    BUILDING ||--o{ ENGINEERING_SYSTEM : contains
+    ENGINEERING_SYSTEM ||--o{ EQUIPMENT : includes
+    ENGINEERING_SYSTEM ||--o{ TICKET : receives
+    ENGINEERING_SYSTEM ||--o{ FORECAST : assesses
+    ENGINEERING_SYSTEM ||--o{ WORK_ORDER : concerns
+    FORECAST ||--o{ ENGINEER_DECISION : receives
+    FORECAST o|--o{ WORK_ORDER : grounds
+    EQUIPMENT o|--o{ WORK_ORDER : specifies
+    BRIGADE o|--o{ WORK_ORDER : executes
+    BUILDING {
+        string id
+        string address
+        int construction_year
+    }
+    ENGINEERING_SYSTEM {
+        string id
+        string type
+    }
+    EQUIPMENT {
+        string id
+        string type
+        string service_history
+    }
+    TICKET {
+        string id
+        datetime occurred_at
+        string failure_type
+        string priority
+    }
+    FORECAST {
+        string id
+        datetime calculated_at
+        string horizon
+        string predicted_event
+        string explanation
+    }
+    ENGINEER_DECISION {
+        string result
+        datetime decided_at
+    }
+    WORK_ORDER {
+        string id
+        datetime created_at
+        string source
+        string execution_result
+    }
+    BRIGADE {
+        string id
+        string specialization
+    }

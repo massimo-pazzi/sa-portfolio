@@ -8,7 +8,7 @@
 
 **Опыт:** пришел в системный анализ из B2B-продаж enterprise ИТ-решений: соединяю глубокое понимание потребностей бизнеса с навыками описания процессов, проектирования ИС и интеграций (BPMN, UML, REST API, C4, ERD).
 
-**Домены: видеосервисы и подписочные платформы · корпоративное обучение (EdTech).**
+**Домены: видеосервисы и подписочные платформы · корпоративное обучение (EdTech) · ЖКХ и эксплуатация недвижимости (PropTech).**
 
 Telegram: [@maxim_potsipukh](https://t.me/maxim_potsipukh)
 
@@ -16,18 +16,18 @@ Telegram: [@maxim_potsipukh](https://t.me/maxim_potsipukh)
 
 | Компетенция | Артефакт | Кейс |
 |---|---|---|
-| Бизнес- и функциональные требования | [Бизнес-требования и функциональные требования к видеоконтуру](case-1-video-contour/requirements/01-requirements.md) | [1](case-1-video-contour/README.md) |
-| User Stories | [Пользовательские требования к видеоконтуру ](case-1-video-contour/requirements/05-user-stories.md) | [1](case-1-video-contour/README.md) |
-| Use Cases | [Сценарии взаимодействия видеоконтура](case-1-video-contour/requirements/06-use-cases.md) | [1](case-1-video-contour/README.md) |
-| ER-диаграммы | [ER-модель видеоконтура](case-1-video-contour/data/README.md) | [1](case-1-video-contour/README.md) |
+| Бизнес- и функциональные требования | [Бизнес-требования и функциональные требования к видеоконтуру](case-1-video-contour/requirements/01-requirements.md) <br> [Требования к цифровому двойнику ЖКХ Москвы](case-3-housing-digital-twin/requirements/01-requirements.md) | [1](case-1-video-contour/README.md) <br> [3](case-3-housing-digital-twin/README.md) |
+| User Stories | [Пользовательские требования к видеоконтуру ](case-1-video-contour/requirements/05-user-stories.md) <br> [Пользовательские требования к цифровому двойнику](case-3-housing-digital-twin/requirements/01-requirements.md#user-stories) | [1](case-1-video-contour/README.md) <br> [3](case-3-housing-digital-twin/README.md) |
+| Use Cases | [Сценарии взаимодействия видеоконтура](case-1-video-contour/requirements/06-use-cases.md) <br> [Прогноз и назначение работы](case-3-housing-digital-twin/requirements/01-requirements.md#uc-1-рассмотреть-прогноз-и-назначить-работу) | [1](case-1-video-contour/README.md) <br> [3](case-3-housing-digital-twin/README.md) |
+| ER-диаграммы | [ER-модель видеоконтура](case-1-video-contour/data/README.md) <br> [Модель данных цифрового двойника ЖКХ Москвы](case-3-housing-digital-twin/data/README.md) | [1](case-1-video-contour/README.md) <br> [3](case-3-housing-digital-twin/README.md) |
 | Нефункциональные требования | [НФТ видеоконтура](case-1-video-contour/requirements/02-nfr-load.md) <br> [НФТ тренажера](case-2-emotion-trainer/README.md#нефункциональные-требования) | [1](case-1-video-contour/README.md) <br> [2](case-2-emotion-trainer/README.md) |
 | Безопасность | [Модель угроз, безопасность и сохранность видеоконтура](case-1-video-contour/requirements/03-security.md) | [1](case-1-video-contour/README.md) |
 | Наблюдаемость | [ТЗ на фичу видеоконтура: метрики, алерты, логи, приемка](case-1-video-contour/requirements/04-observability.md) | [1](case-1-video-contour/README.md) |
 | BPMN | [Бизнес-процесс прохождения тренажера эмоций](case-2-emotion-trainer/bpmn/trainer.png) | [2](case-2-emotion-trainer/README.md) |
-| UML | [Sequence загрузки и нарезки](case-1-video-contour/diagrams/sequence-upload.png) · [Sequence просмотра с переподписью](case-1-video-contour/diagrams/sequence-playback.png) · [State задачи нарезки](case-1-video-contour/diagrams/transcode-job-states.png) <br> [Sequence курса и LMS](case-2-emotion-trainer/diagrams/sequence-scorm.png) | [1](case-1-video-contour/README.md) <br> [2](case-2-emotion-trainer/README.md) |
+| UML | [Sequence загрузки и нарезки](case-1-video-contour/diagrams/sequence-upload.png) · [Sequence просмотра с переподписью](case-1-video-contour/diagrams/sequence-playback.png) · [State задачи нарезки](case-1-video-contour/diagrams/transcode-job-states.png) <br> [Sequence курса и LMS](case-2-emotion-trainer/diagrams/sequence-scorm.png) <br> [Sequence решения инженера](case-3-housing-digital-twin/diagrams/sequence-prevention.png) | [1](case-1-video-contour/README.md) <br> [2](case-2-emotion-trainer/README.md) <br> [3](case-3-housing-digital-twin/README.md) |
 | Архитектура | [Контейнеры видеоконтура (C4)](case-1-video-contour/diagrams/containers.png) <br> [Варианты архитектуры тренажера эмоций](case-2-emotion-trainer/README.md#варианты-архитектуры) | [1](case-1-video-contour/README.md) <br> [2](case-2-emotion-trainer/README.md) |
-| API и интеграции | [API: маршрут плейлистов HLS видеоконтура](case-1-video-contour/api/README.md) <br> [контракт данных SCORM с LMS](case-2-emotion-trainer/README.md#контракт-данных-с-lms) | [1](case-1-video-contour/README.md) <br> [2](case-2-emotion-trainer/README.md) |
-| Тестирование требований | [Тест-кейсы видеоконтура](case-1-video-contour/tests/test-cases.md) · [Трассировка BR → FR → TC видеоконтура](case-1-video-contour/tests/traceability.md) | [1](case-1-video-contour/README.md) |
+| API и интеграции | [API: маршрут плейлистов HLS видеоконтура](case-1-video-contour/api/README.md) <br> [контракт данных SCORM с LMS](case-2-emotion-trainer/README.md#контракт-данных-с-lms) <br> [Потоки и качество данных ЖКХ](case-3-housing-digital-twin/requirements/02-data-and-integration.md) | [1](case-1-video-contour/README.md) <br> [2](case-2-emotion-trainer/README.md) <br> [3](case-3-housing-digital-twin/README.md) |
+| Тестирование требований | [Тест-кейсы видеоконтура](case-1-video-contour/tests/test-cases.md) · [Трассировка BR → FR → TC видеоконтура](case-1-video-contour/tests/traceability.md) <br> [Приёмка и трассировка ЖКХ](case-3-housing-digital-twin/tests/acceptance.md) | [1](case-1-video-contour/README.md) <br> [3](case-3-housing-digital-twin/README.md) |
 | Право | [Правовой режим тренажера эмоций: дерево решений по 152-ФЗ](case-2-emotion-trainer/README.md#правовой-режим-дерево-решений-по-ст-11-152-фз) | [1](case-1-video-contour/README.md) |
 
 ## Кейсы системного анализа
@@ -36,6 +36,7 @@ Telegram: [@maxim_potsipukh](https://t.me/maxim_potsipukh)
 |---|---|---|---|---|
 | 1 | [Видеоконтур платформы монетизации кулинарного контента](case-1-video-contour/README.md) | учебно-практический проект «Су-Шеф», в проде без внешних пользователей | все роли: продукт, анализ, архитектура, разработка, тестирование, эксплуатация | требования, нагрузка и емкость, модель угроз, ТЗ на наблюдаемость, C4, UML, OpenAPI, тест-кейсы |
 | 2 | [AI-тренажер эмоций для сотрудников магазинов](case-2-emotion-trainer/README.md) | реальный пресейл, федеральный ритейлер | системный анализ, архитектура решения, 152-ФЗ | BPMN, UML, контракт SCORM, НФТ, варианты архитектуры, дерево решений |
+| 3 | [Цифровой двойник ЖКХ Москвы](case-3-housing-digital-twin/README.md) | реальный предпроект по запросу Мосстратегии | концепция, требования, постановка прогноза, метрики и прототип | BR/FR, User Stories, Use Cases, ER, sequence, потоки данных, приемка |
 
 ## Другие кейсы: бизнес-анализ, продукт, данные
 
@@ -46,7 +47,6 @@ Telegram: [@maxim_potsipukh](https://t.me/maxim_potsipukh)
 | [Окупаемость ИИ-фильтра заявок для грузовой авиакомпании](https://massimo-pazzi.github.io/b2b-value-case/) | коммерческий проект, система внедрена | бизнес-анализ, экономика решения |
 | [ИИ-консультант по вину для сети супермаркетов](https://massimo-pazzi.github.io/wine-ai-case/) | реальный пресейл | продукт, категорийная экономика |
 | [ИИ-ассистент для сети быстрого питания](https://massimo-pazzi.github.io/fastfood-assistant-case/) | реальный тендер | продукт, метрики, оценка нагрузки |
-| [Цифровой двойник жилого фонда](https://massimo-pazzi.github.io/housing-digital-twin-case/) | реальный пресейл, концепция по запросу Мосстратегии | продукт, прототип |
 | [Гостиничный рынок Петербурга](https://massimo-pazzi.github.io/hotel-market-case/) | исследование на открытых данных | аналитика данных, прогноз |
 | [Доклад на РМЭФ-2026](https://massimo-pazzi.github.io/rief-2026-talk/) | выступление | докладчик |
 
@@ -83,6 +83,12 @@ case-2-emotion-trainer/
   README.md                       кейс проектирования AI-тренажера эмоций
   bpmn/                           процесс: trainer.bpmn + SVG/PNG
   diagrams/                       UML sequence/state, дерево решений по 152-ФЗ
+case-3-housing-digital-twin/
+  README.md                       концепция цифрового двойника жилого фонда
+  requirements/                   требования, сценарии, обмен данными и метрики
+  data/                           логическая модель и правила целостности
+  diagrams/                       ER и UML sequence: исходники, SVG/PNG
+  tests/                          сценарии приёмки и трассировка
 LICENSE                           условия использования материалов
 ```
 
